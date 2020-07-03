@@ -1,6 +1,6 @@
 FROM php:7.3-apache
 
-COPY NTUT_Computer_And_Network_Center_Root_CA.cer /usr/share/ca-certificates/
+COPY /NTUT_Computer_And_Network_Center_Root_CA.crt /usr/share/ca-certificates/
 RUN update-ca-certificates --fresh
 
 RUN export DEBIAN_FRONTEND=noninteractive
