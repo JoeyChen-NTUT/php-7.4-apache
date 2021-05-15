@@ -19,9 +19,5 @@ RUN sed -i -e 's/max_execution_time = 30/max_execution_time = 300/g' /usr/local/
     sed -i -e 's/max_file_uploads = 20/max_file_uploads = 300/g' /usr/local/etc/php/php.ini && \
     sed -i -e 's/max_input_time = 60/max_input_time = 120/g' /usr/local/etc/php/php.ini
     
-RUN find /etc/apache2/sites-enabled/* -exec sed -i 's/#*[Cc]ustom[Ll]og/#CustomLog/g' {} \;
-#RUN find /etc/apache2/sites-enabled/* -exec sed -i 's/#*[Ee]rror[Ll]og/#ErrorLog/g' {} \;
-#RUN sed -i -e 's/#*[Ee]rror[Ll]og/#ErrorLog/g' /etc/apache2/apache2.conf ;
-
 #enable mods
 RUN a2enmod rewrite
