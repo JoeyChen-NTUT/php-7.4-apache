@@ -6,7 +6,7 @@ RUN update-ca-certificates --fresh
 RUN export DEBIAN_FRONTEND=noninteractive
 RUN apt clean
 RUN apt update
-RUN apt install -y apt-utils libncurses5
+RUN apt install -y apt-utils
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 #modify php.ini for env require
@@ -21,6 +21,11 @@ RUN sed -i -e 's/max_execution_time = 30/max_execution_time = 300/g' /usr/local/
 
 #install mysqli extensions
 RUN docker-php-ext-install pdo pdo_mysql sockets && docker-php-ext-enable pdo pdo_mysql sockets
+
+#install odbc and informix
+RUN apt-get install unixodbc unixodbc-dev libncurses5 -y \
+ && docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr \
+ && docker-php-ext-install pdo_odbc
 
 COPY csdk.tar.partaa /tmp/csdk.tar.partaa
 COPY csdk.tar.partab /tmp/csdk.tar.partab
