@@ -41,8 +41,8 @@ RUN cat /tmp/csdk.tar.parta* > /tmp/csdk.tar && \
 RUN cd /tmp/csdk && \
     ./installclientsdk -i silent -DLICENSE_ACCEPTED=TRUE
 
-RUN echo "export INFORMIXDIR="/opt/IBM/Informix_Client-SDK" >> /root/.bashrc
-RUN echo "export LD_LIBRARY_PATH=$INFORMIXDIR/lib/esql:$INFORMIXDIR/lib" >> /root/.bashrc
+RUN echo "export INFORMIXDIR=/opt/IBM/Informix_Client-SDK" >> /root/.bashrc
+RUN echo "export LD_LIBRARY_PATH=$INFORMIXDIR/lib/esql:$INFORMIXDIR/lib:$INFORMIXDIR/cli" >> /root/.bashrc
 RUN echo "export SHLIB_PATH=$INFORMIXDIR/lib/esql" >> /root/.bashrc
 RUN echo "export LIBPATH=$INFORMIXDIR/lib/esql" >> /root/.bashrc
 
