@@ -23,9 +23,6 @@ RUN sed -i -e 's/max_execution_time = 30/max_execution_time = 300/g' /usr/local/
 RUN docker-php-ext-install pdo pdo_mysql sockets && docker-php-ext-enable pdo pdo_mysql sockets
 
 #install odbc and informix
-RUN apt-get install unixodbc unixodbc-dev libncurses5 -y \
- && docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr \
- && docker-php-ext-install pdo_odbc
 
 COPY csdk.tar.partaa /tmp/csdk.tar.partaa
 COPY csdk.tar.partab /tmp/csdk.tar.partab
@@ -42,6 +39,16 @@ RUN cat /tmp/csdk.tar.parta* > /tmp/csdk.tar && \
     
 RUN cd /tmp/csdk && \
     ./installclientsdk -i silent -DLICENSE_ACCEPTED=TRUE
+
+RUN echo "EXPORT INFORMIXDIR="/opt/IBM/Informix_Client-SDK" >> /root/.bashrc
+RUN echo "EXPORT LD_LIBRARY_PATH=$INFORMIXDIR/lib/esql:$INFORMIXDIR/lib" >> /root/.bashrc
+RUN echo "EXPORT SHLIB_PATH=$INFORMIXDIR/lib/esql" >> /root/.bashrc
+RUN echo "EXPORT LIBPATH=$INFORMIXDIR/lib/esql" >> /root/.bashrc
+
+RUN apt-get install unixodbc unixodbc-dev libncurses5 -y
+RUN docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr \
+ && docker-php-ext-install pdo_odbc
+
 
 #enable mods
 RUN a2enmod rewrite
