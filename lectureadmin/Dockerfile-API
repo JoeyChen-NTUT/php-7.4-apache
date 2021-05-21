@@ -22,5 +22,19 @@ RUN sed -i -e 's/max_execution_time = 30/max_execution_time = 300/g' /usr/local/
 #install mysqli extensions
 RUN docker-php-ext-install pdo pdo_mysql sockets && docker-php-ext-enable pdo pdo_mysql sockets
 
+COPY csdk.tar.partaa /tmp/csdk.tar.partaa
+COPY csdk.tar.partab /tmp/csdk.tar.partab
+COPY csdk.tar.partac /tmp/csdk.tar.partac
+COPY csdk.tar.partad /tmp/csdk.tar.partad
+COPY csdk.tar.partae /tmp/csdk.tar.partae
+COPY csdk.tar.partaf /tmp/csdk.tar.partaf
+COPY csdk.tar.partag /tmp/csdk.tar.partag
+COPY csdk.tar.partah /tmp/csdk.tar.partah
+
+RUN cat /tmp/csdk.tar.parta* > /tmp/csdk.tar && \
+    mkdir /tmp/csdk && \
+    tar -xvf /tmp/csdk.tar -C /tmp/csdk && \
+    ./installclientsdk -i silent
+
 #enable mods
 RUN a2enmod rewrite
