@@ -33,8 +33,9 @@ COPY csdk.tar.partah /tmp/csdk.tar.partah
 
 RUN cat /tmp/csdk.tar.parta* > /tmp/csdk.tar && \
     mkdir /tmp/csdk && \
-    tar -xvf /tmp/csdk.tar -C /tmp/csdk && \
-    cd /tmp/csdk && \
+    tar -xvf /tmp/csdk.tar -C /tmp/csdk
+    
+RUN cd /tmp/csdk && \
     ./installclientsdk -i silent -DLICENSE_ACCEPTED=TRUE
 
 #enable mods
