@@ -45,6 +45,8 @@ RUN echo 'export INFORMIXDIR="/opt/IBM/Informix_Client-SDK"' >> /root/.bashrc
 RUN echo 'export LD_LIBRARY_PATH="$INFORMIXDIR/lib:$INFORMIXDIR/lib/esql:$INFORMIXDIR/cli:$LD_LIBRARY_PATH"' >> /root/.bashrc
 RUN echo 'export SHLIB_PATH="$INFORMIXDIR/lib/esql"' >> /root/.bashrc
 RUN echo 'export LIBPATH="$INFORMIXDIR/lib/esql"' >> /root/.bashrc
+RUN echo 'export ODBCINI="/etc/odbc.ini"' >> /root/.bashrc
+RUN echo 'export ODBCSYSINI="/etc"' >> /root/.bashrc
 
 RUN docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr \
  && docker-php-ext-install pdo_odbc
