@@ -66,6 +66,13 @@ RUN echo 'export LIBPATH="$INFORMIXDIR/lib/esql"' >> /root/.bashrc
 RUN echo 'export ODBCINI="/etc/odbc.ini"' >> /root/.bashrc
 RUN echo 'export ODBCSYSINI="/etc"' >> /root/.bashrc
 
+RUN echo 'export INFORMIXDIR="/opt/IBM/Informix_Client-SDK"' >> /etc/apache2/envvars
+RUN echo 'export LD_LIBRARY_PATH="$INFORMIXDIR/lib:$INFORMIXDIR/lib/esql:$INFORMIXDIR/cli:$LD_LIBRARY_PATH"' >> /etc/apache2/envvars
+RUN echo 'export SHLIB_PATH="$INFORMIXDIR/lib/esql"' >> /etc/apache2/envvars
+RUN echo 'export LIBPATH="$INFORMIXDIR/lib/esql"' >> /etc/apache2/envvars
+RUN echo 'export ODBCINI="/etc/odbc.ini"' >> /etc/apache2/envvars
+RUN echo 'export ODBCSYSINI="/etc"' >> /etc/apache2/envvars
+
 # Install PHP odbc extension
 # https://github.com/docker-library/php/issues/103
 RUN set -x \
