@@ -60,21 +60,21 @@ RUN cd /tmp/csdk && \
     ./installclientsdk -i silent -DLICENSE_ACCEPTED=TRUE
 
 RUN cat << EOF >> /root/.bashrc
-export INFORMIXDIR="/opt/IBM/Informix_Client-SDK"
-export LD_LIBRARY_PATH="$INFORMIXDIR/lib:$INFORMIXDIR/lib/esql:$INFORMIXDIR/cli:$LD_LIBRARY_PATH"
-export SHLIB_PATH="$INFORMIXDIR/lib/esql"
-export LIBPATH="$INFORMIXDIR/lib/esql"
-export ODBCINI="/etc/odbc.ini"
-export ODBCSYSINI="/etc"
+'export INFORMIXDIR="/opt/IBM/Informix_Client-SDK"''
+'export LD_LIBRARY_PATH="$INFORMIXDIR/lib:$INFORMIXDIR/lib/esql:$INFORMIXDIR/cli:$LD_LIBRARY_PATH"'
+'export SHLIB_PATH="$INFORMIXDIR/lib/esql"'
+'export LIBPATH="$INFORMIXDIR/lib/esql"'
+'export ODBCINI="/etc/odbc.ini"'
+'export ODBCSYSINI="/etc"'
 EOF
 
 RUN cat << EOF >> /etc/apache2/envvars
-export INFORMIXDIR="/opt/IBM/Informix_Client-SDK"
-export LD_LIBRARY_PATH="$INFORMIXDIR/lib:$INFORMIXDIR/lib/esql:$INFORMIXDIR/cli:$LD_LIBRARY_PATH"
-export SHLIB_PATH="$INFORMIXDIR/lib/esql"
-export LIBPATH="$INFORMIXDIR/lib/esql"
-export ODBCINI="/etc/odbc.ini"
-export ODBCSYSINI="/etc"
+'export INFORMIXDIR="/opt/IBM/Informix_Client-SDK"''
+'export LD_LIBRARY_PATH="$INFORMIXDIR/lib:$INFORMIXDIR/lib/esql:$INFORMIXDIR/cli:$LD_LIBRARY_PATH"'
+'export SHLIB_PATH="$INFORMIXDIR/lib/esql"'
+'export LIBPATH="$INFORMIXDIR/lib/esql"'
+'export ODBCINI="/etc/odbc.ini"'
+'export ODBCSYSINI="/etc"'
 EOF
 
 # Install PHP odbc extension
