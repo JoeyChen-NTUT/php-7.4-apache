@@ -32,14 +32,14 @@ RUN apt-get install -y \
         libmcrypt-dev \
         libjpeg-dev \
         libpng-dev \
-        libmcrypt-dev \
-    && docker-php-ext-configure gd \
+        libmcrypt-dev 
+RUN docker-php-ext-configure gd \
 #        --enable-gd-native-ttf \
         --with-freetype=/usr/include/freetype2 \
-        --with-jpeg=/usr/include \
-    && docker-php-ext-install gd \
-    && docker-php-ext-install mbstring \
-    && docker-php-ext-enable gd
+        --with-jpeg=/usr/include 
+RUN docker-php-ext-install gd 
+RUN docker-php-ext-install mbstring 
+RUN docker-php-ext-enable gd
    
 #install mysqli extensions
 RUN docker-php-ext-install pdo pdo_mysql && docker-php-ext-enable pdo pdo_mysql
