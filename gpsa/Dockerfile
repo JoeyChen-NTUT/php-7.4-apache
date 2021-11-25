@@ -35,9 +35,9 @@ RUN apt-get install -y \
         libmcrypt-dev \
     && docker-php-ext-configure gd \
 #        --enable-gd-native-ttf \
-        --with-freetype \
-        --with-png-dir \
-        --with-jpeg-dir \
+        --with-freetype=/usr/include/freetype2 \
+        --with-png=/usr/include \
+        --with-jpeg=/usr/include \
     && docker-php-ext-install gd \
     && docker-php-ext-install mbstring \
     && docker-php-ext-enable gd
