@@ -36,7 +36,6 @@ RUN apt-get install -y \
     && docker-php-ext-configure gd \
 #        --enable-gd-native-ttf \
         --with-freetype=/usr/include/freetype2 \
-        --with-png=/usr/include \
         --with-jpeg=/usr/include \
     && docker-php-ext-install gd \
     && docker-php-ext-install mbstring \
