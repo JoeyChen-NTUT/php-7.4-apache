@@ -32,7 +32,7 @@ RUN apt-get install -y \
         libmcrypt-dev \
         libjpeg-dev \
         libpng-dev \
-        oniguruma-dev \
+         libonig-dev \
         libmcrypt-dev 
 RUN docker-php-ext-configure gd \
 #        --enable-gd-native-ttf \
