@@ -26,7 +26,11 @@ RUN sed -i -e 's/;curl.cainfo=/curl.cainfo=\/etc\/ssl\/certs\/ca-certificates.cr
 RUN sed -i -e 's/;openssl.cainfo=/openssl.cainfo=\/etc\/ssl\/certs\/ca-certificates.crt/g' /usr/local/etc/php/php.ini
     
 #install mysqli extensions
-RUN docker-php-ext-install pdo pdo_mysql zip gd && docker-php-ext-enable pdo pdo_mysql zip gd sockets
+RUN docker-php-ext-install pdo && docker-php-ext-enable pdo
+RUN docker-php-ext-install pdo_mysql && docker-php-ext-enable pdo_mysql
+RUN docker-php-ext-install zip && docker-php-ext-enable zip
+RUN docker-php-ext-install gd && docker-php-ext-enable gd
+RUN docker-php-ext-install sockets && docker-php-ext-enable sockets
 
 #enable mods
 RUN a2enmod rewrite
