@@ -6,7 +6,7 @@ RUN update-ca-certificates --fresh
 RUN export DEBIAN_FRONTEND=noninteractive
 RUN apt clean
 RUN apt update
-RUN apt install -y apt-utils git libxml2-dev
+RUN apt install -y apt-utils git libxml2-dev ping
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 #modify php.ini for env require
