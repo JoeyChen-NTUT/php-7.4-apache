@@ -6,7 +6,7 @@ RUN update-ca-certificates --fresh
 RUN export DEBIAN_FRONTEND=noninteractive
 RUN apt clean
 RUN apt update
-RUN apt install -y apt-utils git libxml2-dev ping
+RUN apt install -y apt-utils git ping
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 #modify php.ini for env require
@@ -21,7 +21,19 @@ RUN sed -i -e 's/max_execution_time = 30/max_execution_time = 300/g' /usr/local/
     
 RUN docker-php-ext-install pdo && docker-php-ext-enable pdo
 RUN docker-php-ext-install pdo_mysql && docker-php-ext-enable pdo_mysql
-RUN docker-php-ext-install soap && docker-php-ext-enable soap
+
+#install zip extensions
+RUN apt-get install -y \
+        libxml2-dev \
+  && docker-php-ext-configure soap \
+  && docker-php-ext-install soap
+
+#install zip extensions
+RUN apt-get install -y \
+        libzip-dev \
+        zip \
+  && docker-php-ext-configure zip \
+  && docker-php-ext-install zip
 
 #enable mods
 RUN a2enmod rewrite
